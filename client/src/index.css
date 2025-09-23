@@ -1,1 +1,223 @@
 @import "tailwindcss";
+
+/* Custom Gilroy Font */
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Special Mazius Extraitalic Font */
+@font-face {
+  font-family: 'Mazius Extraitalic';
+  src: url('/fonts/Mazius-Extraitalic.121a71a7.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* PP Editorial New Ultralight Italic Font */
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('/fonts/PPEditorialNew-UltralightItalic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* PP Playground Medium Font */
+@font-face {
+  font-family: 'PP Playground';
+  src: url('/fonts/PPPlayground-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Thunder Black LC Font */
+@font-face {
+  font-family: 'Thunder';
+  src: url('/fonts/Thunder-BlackLC.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+* html {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gradient-bg-welcome {
+  background-color:#0f0e13;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+}
+
+.gradient-bg-services {
+  background-color:#0f0e13;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 100%, hsla(225,39%,25%,1) 0, transparent 50%);
+}
+
+.gradient-bg-transactions {
+  background-color: #0f0e13;
+  background-image: 
+    radial-gradient(at 0% 100%, hsla(253,16%,7%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(225,39%,25%,1) 0, transparent 50%);
+}
+
+.gradient-bg-footer {
+  background-color: #0f0e13;
+  background-image: 
+    radial-gradient(at 0% 100%, hsla(253,16%,7%,1) 0, transparent 53%), 
+    radial-gradient(at 50% 150%, hsla(339,49%,30%,1) 0, transparent 50%);
+}
+
+.blue-glassmorphism {
+  background: rgb(39, 51, 89, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+/* white glassmorphism */
+.white-glassmorphism {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.eth-card {
+  background-color:#a099ff;
+  background-image: 
+    radial-gradient(at 83% 67%, rgb(152, 231, 156) 0, transparent 58%), 
+    radial-gradient(at 67% 20%, hsla(357,94%,71%,1) 0, transparent 59%), 
+    radial-gradient(at 88% 35%, hsla(222,81%,65%,1) 0, transparent 50%), 
+    radial-gradient(at 31% 91%, hsla(9,61%,61%,1) 0, transparent 52%), 
+    radial-gradient(at 27% 71%, hsla(336,91%,65%,1) 0, transparent 49%), 
+    radial-gradient(at 74% 89%, hsla(30,98%,65%,1) 0, transparent 51%), 
+    radial-gradient(at 53% 75%, hsla(174,94%,68%,1) 0, transparent 45%);
+}
+
+.text-gradient {
+  background-color: #fff;
+  background-image: radial-gradient(at 4% 36%, hsla(0,0%,100%,1) 0, transparent 53%), radial-gradient(at 100% 60%, rgb(0, 0, 0) 0, transparent 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Special Mazius Font Classes */
+.font-mazius {
+  font-family: 'Mazius Extraitalic', serif;
+  font-style: italic;
+}
+
+.text-mazius {
+  font-family: 'Mazius Extraitalic', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Special heading with Mazius font */
+.heading-mazius {
+  font-family: 'Mazius Extraitalic', serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* Special accent text with Mazius font */
+.accent-mazius {
+  font-family: 'Mazius Extraitalic', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #8b5cf6;
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+/* PP Editorial New Font Classes */
+.font-editorial {
+  font-family: 'PP Editorial New', serif;
+  font-style: italic;
+  font-weight: 200;
+}
+
+.text-editorial {
+  font-family: 'PP Editorial New', serif;
+  font-style: italic;
+  font-weight: 200;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+/* PP Playground Font Classes */
+.font-playground {
+  font-family: 'PP Playground', sans-serif;
+  font-weight: 500;
+}
+
+.text-playground {
+  font-family: 'PP Playground', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* Thunder Font Classes */
+.font-thunder {
+  font-family: 'Thunder', sans-serif;
+  font-weight: 900;
+}
+
+.text-thunder {
+  font-family: 'Thunder', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+/* Special heading with Thunder font */
+.heading-thunder {
+  font-family: 'Thunder', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+/* Special accent with PP Editorial */
+.accent-editorial {
+  font-family: 'PP Editorial New', serif;
+  font-style: italic;
+  font-weight: 200;
+  color: #f093fb;
+  text-shadow: 0 0 15px rgba(240, 147, 251, 0.4);
+}
+
+/* Special accent with PP Playground */
+.accent-playground {
+  font-family: 'PP Playground', sans-serif;
+  font-weight: 500;
+  color: #43e97b;
+  text-shadow: 0 0 15px rgba(67, 233, 123, 0.4);
+}
+
