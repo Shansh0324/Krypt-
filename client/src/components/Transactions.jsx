@@ -120,11 +120,11 @@ const Transactions = () => {
         <div className="text-center mb-12">
           {currentAccount ? (
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Latest Transactions
+              <h2 className="text-4xl md:text-5xl font-semibold text-white mb-4">
+                <span className="text-editorial capitalize">Latest </span> Transactions
               </h2>
-              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                Your recent crypto transactions with dynamic GIFs and detailed information
+              <p className="text-gray-400 text-base sm:text-lg md:text-md lg:text-base max-w-2xl mx-auto uppercase gap-3">
+                Your recent <span className="text-editorial capitalize">crypto</span> transactions with dynamic GIFs and detailed <span className="text-editorial capitalize">information</span>
               </p>
             </div>
           ) : (
