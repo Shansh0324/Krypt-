@@ -39,8 +39,8 @@ const Input = ({ placeholder, name, type, value, handleChange, icon: Icon }) => 
     <div className="relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-md border border-white/10 group-hover:border-white/20 group-focus-within:border-blue-400/50 transition-all duration-300">
       {/* Icon */}
       {Icon && (
-        <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10">
-          <Icon className="text-white/60 group-hover:text-blue-300 group-focus-within:text-blue-400 transition-colors duration-300 text-lg" />
+        <div className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 z-10">
+          <Icon className="text-white/60 group-hover:text-blue-300 group-focus-within:text-blue-400 transition-colors duration-300 text-base sm:text-lg" />
         </div>
       )}
       
@@ -52,12 +52,18 @@ const Input = ({ placeholder, name, type, value, handleChange, icon: Icon }) => 
         value={value}
         onChange={(e) => handleChange(e, name)}
         className={`
-          w-full py-4 px-4 text-white placeholder-white/50 
+          w-full py-3 sm:py-4 px-3 sm:px-4 text-white placeholder-white/50 
           bg-transparent border-none outline-none text-sm font-medium
           transition-all duration-300
-          ${Icon ? 'pl-12' : 'pl-4'}
+          ${Icon ? 'pl-10 sm:pl-12' : 'pl-3 sm:pl-4'}
           focus:placeholder-white/30
+          mobile-input
         `}
+        style={{
+          fontSize: '16px', // Prevent zoom on iOS
+          WebkitAppearance: 'none',
+          borderRadius: '0'
+        }}
       />
       
       {/* Animated border effect */}
@@ -69,7 +75,7 @@ const Input = ({ placeholder, name, type, value, handleChange, icon: Icon }) => 
     
     {/* Floating label effect */}
     {value && (
-      <div className="absolute -top-2 left-4 px-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-md">
+      <div className="absolute -top-2 left-3 sm:left-4 px-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-md">
         <span className="text-xs text-blue-300 font-medium">{placeholder}</span>
       </div>
     )}

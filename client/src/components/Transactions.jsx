@@ -1,24 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { SiEthereum } from "react-icons/si";
 import { BsArrowUpRight, BsArrowDownLeft } from "react-icons/bs";
 
 import { TransactionContext } from "../context/TransactionContext";
+import TransactionModal from "./TransactionModal";
 
 import useFetch from "../hooks/useFetch";
 import dummyData from "../utils/dummyData";
 import { shortenAddress } from "../utils/shortenAddress";
 
-const TransactionsCard = ({ addressTo, addressFrom, timestamp, message, keyword, amount, url }) => {
+const TransactionsCard = ({ addressTo, addressFrom, timestamp, message, keyword, amount, url, onClick }) => {
   const gifUrl = useFetch({ keyword });
 
   return (
-    <div className="group relative bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] 
-      border border-gray-700/50 rounded-2xl p-5 
-      hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/10
-      transition-all duration-300 ease-in-out
-      backdrop-blur-sm
-      h-[320px] w-full
-      flex flex-col"
+    <div 
+      className="group relative bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] 
+        border border-gray-700/50 rounded-2xl p-5 
+        hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/10
+        transition-all duration-300 ease-in-out
+        backdrop-blur-sm
+        h-[320px] w-full
+        flex flex-col
+        cursor-pointer
+        hover:scale-[1.02] active:scale-[0.98]"
+      onClick={onClick}
     >
       {/* Header with transaction type indicator */}
       <div className="flex items-center justify-between mb-3">
@@ -106,12 +111,31 @@ const TransactionsCard = ({ addressTo, addressFrom, timestamp, message, keyword,
       {/* Hover effect overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 
         rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      
+      {/* Click indicator */}
+      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="w-6 h-6 rounded-full bg-blue-500/20 backdrop-blur-sm border border-blue-500/30 flex items-center justify-center">
+          <BsArrowUpRight className="text-blue-400 text-xs rotate-45" />
+        </div>
+      </div>
     </div>
   );
 };
 
 const Transactions = () => {
   const { transactions, currentAccount } = useContext(TransactionContext);
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleTransactionClick = (transaction) => {
+    setSelectedTransaction(transaction);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedTransaction(null);
+  };
 
   return (
     <div className="w-full gradient-bg-transactions">
@@ -148,7 +172,8 @@ const Transactions = () => {
                 {[...transactions].reverse().map((transaction, i) => (
                   <TransactionsCard 
                     key={`real-${transaction.addressFrom}-${transaction.timestamp}-${i}`} 
-                    {...transaction} 
+                    {...transaction}
+                    onClick={() => handleTransactionClick(transaction)}
                   />
                 ))}
               </div>
@@ -173,7 +198,11 @@ const Transactions = () => {
             // Show only dummy data when wallet is NOT connected
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
               {dummyData.slice(0, 6).map((transaction, i) => (
-                <TransactionsCard key={`dummy-${i}`} {...transaction} />
+                <TransactionsCard 
+                  key={`dummy-${i}`} 
+                  {...transaction}
+                  onClick={() => handleTransactionClick(transaction)}
+                />
               ))}
             </div>
           )}
@@ -201,6 +230,13 @@ const Transactions = () => {
           </div>
         )}
       </div>
+      
+      {/* Transaction Modal */}
+      <TransactionModal
+        transaction={selectedTransaction}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 };
