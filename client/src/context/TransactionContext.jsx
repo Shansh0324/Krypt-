@@ -9,11 +9,11 @@ const TransactionContext = React.createContext();
 
 const { ethereum } = window;
 
-// ✅ Make this async so we can await getSigner()
+//  Make this async so we can await getSigner()
 const createEthereumContract = async () => {
   if (!ethereum) throw new Error("Ethereum object not found");
   const provider = new ethers.BrowserProvider(ethereum);
-  const signer = await provider.getSigner(); // ✅ await here
+  const signer = await provider.getSigner(); //  await here
   return new ethers.Contract(contractAddress, contractABI, signer);
 };
 
@@ -130,7 +130,7 @@ const TransactionsProvider = ({ children }) => {
 
         const parsedAmount = ethers.parseEther(amount);
 
-        // ✅ Single transaction: Send ETH and record in contract
+        //  Single transaction: Send ETH and record in contract
         const transactionsContract = await createEthereumContract();
         const transactionHash = await transactionsContract.addToBlockChain(addressTo, parsedAmount, message, keyword, {
           value: parsedAmount // Send ETH with the contract call
